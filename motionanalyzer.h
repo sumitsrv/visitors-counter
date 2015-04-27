@@ -16,6 +16,7 @@ public:
     Mat *background_frame;
     void processFrame(Mat);
     void resetBackground();
+    Counter* getCounter();
 
 private:
     short BG_FRAMES_REQ;

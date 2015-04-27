@@ -20,12 +20,14 @@ void CounterMainWindow::timerEvent(QTimerEvent *event)
 {
     Mat captureImg;
     mCapture >> captureImg;
-//    ui->imageViewer->showImage(captureImg);
+    ui->imageViewer->showImage(captureImg);
     if(track) {
         motion_analyzer->processFrame(captureImg);
     }
-    ui->imageViewer->showImage(*motion_analyzer->tracker_img);
-//    ui->lcdNumber->showCount(motion_analyzer->total_count);
+//    ui->imageViewer->showImage(*motion_analyzer->tracker_img);
+    ui->lcdNumber->showCount(motion_analyzer->getCounter()->getTotalCount());
+    ui->lcdNumber_2->showCount(motion_analyzer->getCounter()->getCountIn());
+    ui->lcdNumber_3->showCount(motion_analyzer->getCounter()->getCountOut());
 }
 
 void CounterMainWindow::on_actionStartCamera_triggered()
@@ -37,7 +39,7 @@ void CounterMainWindow::on_actionStartCamera_triggered()
         mCapture.set(CV_CAP_PROP_FRAME_WIDTH, 640.0);
         motion_analyzer = new MotionAnalyzer();
 
-        if( !mCapture.open( 1 ) )
+        if( !mCapture.open( 0 ) )
         {
             return;
         }

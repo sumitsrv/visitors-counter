@@ -1,5 +1,7 @@
 QT += core gui opengl quick svg xml qml declarative multimedia widgets
 
+QMAKE_CXXFLAGS += -std=c++11
+
 TARGET = Counter
 TEMPLATE = app
 
@@ -9,14 +11,16 @@ SOURCES += main.cpp\
     counter.cpp \
     counterviewer.cpp \
     mergesort.cpp \
-    motionanalyzer.cpp
+    motionanalyzer.cpp \
+    blobinfo.cpp
 
 HEADERS  += countermainwindow.h \
     imageviewer.h \
     counter.h \
     counterviewer.h \
     mergesort.h \
-    motionanalyzer.h
+    motionanalyzer.h \
+    blobinfo.h
 
 FORMS  +=  countermainwindow.ui
 

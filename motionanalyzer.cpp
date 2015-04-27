@@ -22,12 +22,17 @@ void MotionAnalyzer::resetBackground()
     hasBackground = false;
 }
 
+Counter *MotionAnalyzer::getCounter()
+{
+    return counter;
+}
+
 void MotionAnalyzer::evaluateForeground()
 {
     Mat *tmp_img = new Mat();
     getForeground(curr_frame, foreground_frame);
     //    adaptiveThreshold(*motion_frame, *tmp_img, 255, CV_ADAPTIVE_THRESH_GAUSSIAN_C, CV_THRESH_BINARY, 11, 2);
-    threshold(*foreground_frame, *tmp_img, 50, 255, CV_THRESH_BINARY);
+    threshold(*foreground_frame, *tmp_img, 20, 255, CV_THRESH_BINARY);
     erode(*tmp_img, *tmp_img, Mat(), Point(-1, -1), 3, BORDER_REPLICATE, morphologyDefaultBorderValue());
     //    dilate(*tmp_img, *tmp_img, Mat(), Point(-1,-1), 3, BORDER_REPLICATE, morphologyDefaultBorderValue());
     tmp_img->copyTo(*tracker_img);
@@ -58,6 +63,8 @@ void MotionAnalyzer::initBackground()
         for(int i=0; i<BG_FRAMES_REQ; i++){
             calc_frame[i]->release();
         }
+
+        counter->setMidPoint(background_frame->cols/2, background_frame->rows/2);
     }
 
     bgframe_ev_count++;
@@ -97,7 +104,7 @@ void MotionAnalyzer::processFrame(Mat captureImg)
 {
     cvtColor(captureImg, *curr_frame, CV_BGR2GRAY, 1);
 
-    if(hasBackground){
+    if(!hasBackground){
         initBackground();
     }else{
         evaluateMotion();

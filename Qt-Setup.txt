@@ -1,0 +1,73 @@
+Setting up QT Creator on Pidora:
+
+1] Install gdb, g++
+	sudo yum install gdb g++
+2] Install Qt (This shall install Qt4.8):
+	sudo yum install qt qt-devel qt-creator
+	
+3] Install OpenCV dependencies:
+	yum install libtiff-devel libjpeg-devel libjasper-devel
+	yum install gstreamer-plugins-bad*
+	yum install python-devel
+	yum install libdc1394
+	yum install gtk+ gtk+-devel
+4] Install FFMpeg
+	http://synclinux.blogspot.in/2013/06/ffmpeg-on-fedora.html
+5] Install OpenCV
+	http://synclinux.blogspot.in/2012/01/opencv-installation.html
+	
+6] i] Open Qt creator
+   ii] Go to "Tools"->"Options"->"Build & Run"
+   iii] Open tab "Qt Versions"
+       If no qt version is present, add one. Browse /usr/bin/ and select 'qmake'.
+   iv] Open tab "Compilers"
+	  If no compiler present, add one of type "GCC". Browse its location to /usr/bin/ and select 'g++'.
+	v] Open tab "Debuggers"
+	  If no debugger present, add one. Browse /usr/bin/ and select 'gdb'.
+   vi] Open tab "Kits"
+      If no kit present, add one.
+      If one is present but has some errors, configure it to point to compiler and the debuggers you just configured.
+      
+7] Import project:
+	Open "File"->"Open File or Project"
+	Browse to the "Counter" project and select the counter.pro file and click "Open". If a dialog box opens stating that counter.pro.user file is missing and if you would like to continue, click "Yes".
+	
+	
+Setting up QT Creator on Raspbian:
+
+1] Install gdb, g++
+	sudo apt-get install gdb g++
+2] Install Qt (This shall install Qt4.8):
+	sudo apt-get install qtcreator
+	
+3] Install OpenCV dependencies:
+	sudo apt-get install build-essential checkinstall git cmake libfaac-dev libjack-jackd2-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libsdl1.2-dev libtheora-dev libva-dev libvdpau-dev libvorbis-dev libx11-dev libxfixes-dev libxvidcore-dev texi2html yasm zlib1g-dev
+	sudo apt-get install libtiff5-dev
+	sudo apt-get install libjpeg8 libjpeg8-dev
+	sudo apt-get install python python-dev
+	sudo apt-get install libdc1394-22libdc1394-22-dev
+	sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad gstreamer0.10-ffmpeg
+	
+4] Install FFMpeg
+	http://synclinux.blogspot.in/2013/06/ffmpeg-on-fedora.html
+5] Install OpenCV
+	http://synclinux.blogspot.in/2012/01/opencv-installation.html
+	
+6] i] Open Qt creator
+   ii] Go to "Tools"->"Options"->"Build & Run"
+   iii] Open tab "Qt Versions"
+       If no qt version is present, add one. Browse /usr/bin/ and select 'qmake'.
+   iv] Open tab "Compilers"
+	  If no compiler present, add one of type "GCC". Browse its location to /usr/bin/ and select 'g++'.
+	v] Open tab "Debuggers"
+	  If no debugger present, add one. Browse /usr/bin/ and select 'gdb'.
+   vi] Open tab "Kits"
+      If no kit present, add one.
+      If one is present but has some errors, configure it to point to compiler and the debuggers you just configured.
+      
+7] Import project:
+	Open "File"->"Open File or Project"
+	Browse to the "Counter" project and select the counter.pro file and click "Open". If a dialog box opens stating that counter.pro.user file is missing and if you would like to continue, click "Yes".
+	
+Note: For if you encounter any GUI issues with Raspbian, run following command (this has nothing to do with OpenCV)
+	sudo apt-get install indicator-applet-session gnome-control-center-data
